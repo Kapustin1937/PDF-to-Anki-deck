@@ -30,7 +30,7 @@ filename = r"la_hobito.pdf"
 def create_csv_string(kaikki_dictionary_filename, pdf_filename):
 
     allsentences = extract_sentencelist("input/"+pdf_filename)
-
+    kaikki_dictionary_filename = "dictionaries/" + kaikki_dictionary_filename
     # Create word:entry dictionary
     valid_word_set = {item["word"]:item for item in jsonl.load(kaikki_dictionary_filename)}
 
@@ -77,6 +77,7 @@ def create_csv_string(kaikki_dictionary_filename, pdf_filename):
 
                 # Remember base form for later
                 visited.add(base_form)
-
+    return csv_
+    """
     with open("output/"+pdf_filename.split(".")[0]+".csv", "w", encoding="utf-8") as file:
-        file.write(csv_)
+        file.write(csv_)"""
