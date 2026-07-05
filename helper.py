@@ -57,6 +57,12 @@ def create_csv_string(kaikki_dictionary_filename, pdf_filename):
 
 
             if string in valid_word_set.keys():
+                print(string)
+
+                if string == "punta":
+                    print(valid_word_set[string])
+                    input()
+
                 word = valid_word_set[string]
                 # Check if entry has "form-of" tag and then get the original form
                 if "tags" in word["senses"][0].keys() and "form-of" in word["senses"][0]["tags"]:
@@ -71,6 +77,12 @@ def create_csv_string(kaikki_dictionary_filename, pdf_filename):
 
                 # Create csv line based on base form
                 word = valid_word_set[base_form]
+
+                # Account for this weird edge casse
+                if "glosses" not in word["senses"][0].keys():
+                    continue
+
+
                 csv_line = ":".join([base_form, "<br>".join(word["senses"][0]["glosses"]), sentence])
                 base_word_set.add(base_form)
                 csv_ += csv_line + "\n"
